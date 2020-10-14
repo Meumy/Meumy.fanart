@@ -29,7 +29,15 @@
           <div class="mask"></div>
         </div>
         <!--文字介绍-->
-        <div class="introduct"></div>
+        <div class="introduct">
+          <div class="name">
+            <span class="title">King.Jin</span>
+          </div>
+          <div class="address">
+            <span class="subtitle">ZheJiang , China</span>
+          </div>
+          <div class="text"><span>A sunny and handsome boy in China.Like reading, playing chess, playing games, love the two-dimensional culture and Vtubers</span></div>
+        </div>
       </el-row>
     </el-col>
     <el-col
@@ -142,7 +150,7 @@ span {
   cursor: pointer;
 }
 .img_swiper {
-  width: 80%;
+  width: 84%;
   height: 100%;
   position: relative;
   box-sizing: border-box;
@@ -150,16 +158,62 @@ span {
 .swiper {
   position: relative;
   float: left;
-  width: 80%;
+  width:75%;
   height: 100%;
   background-color: silver;
 }
-.mask{
+.mask {
   position: relative;
   float: left;
-  width: 20%;
+  width: 25%;
   height: 100%;
   background-color: rgba(80, 80, 80, 0.3);
+}
+.introduct {
+  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32%;
+  height: 100%;
+}
+.name,.address,.text {
+  float: right;
+  text-align: left;
+  position: relative;
+  margin-top: 50%;
+  width: 100%;
+  height: max-content;
+}
+.address{
+  margin-top: 3%;
+}
+.text{
+  margin-top: 4%;
+  padding-right: 8%;
+  text-align: inter-word ;
+  word-break: break-all;
+  box-sizing: border-box;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.title {
+  font-size: 50px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  letter-spacing: 2px;
+  color: rgba(252, 86, 86, 0.6);
+}
+.subtitle {
+  font-size: 18px;
+  margin-left: 2%;
+  letter-spacing: 2px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: rgba(255, 255, 255, 0.7);
+}
+.text span{
+  margin-left: 2%;
+  width: 100%;
 }
 </style>
 <style>
