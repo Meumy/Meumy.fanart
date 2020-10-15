@@ -28,6 +28,10 @@ export default {
 html,body{
   height: 100%;
   width: 100%;
-  
+  background-color: black;
+  overflow: hidden;
+  user-select: none;
+  margin: 0;
 }
+
 </style>

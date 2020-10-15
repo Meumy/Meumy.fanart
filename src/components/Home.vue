@@ -1,31 +1,55 @@
 <template>
   <div class="home_body">
-    <el-col
-      class="allheight adjust_blank"
-      :span="3"
-      style="border-right: 1px solid rgba(212, 212, 212, 0.1)"
-    ></el-col>
+    <!-- <canvas id='canvas'></canvas> -->
+    <el-col class="allheight adjust_blank" :span="3"></el-col>
     <el-col class="allheight" :span="18">
       <el-row class="main_row_one">
         <!--Logo-->
         <div class="top_col_one">
           <img class="logo" src="../assets/images/king.png" />
-          <div class="logo_text">King</div>
+          <div class="logo_text">
+              <span>K</span>
+              <span>i</span>
+              <span>n</span>
+              <span>g</span>
+          </div>
         </div>
         <!--导航-->
         <div class="top_col_two">
           <div class="menu_body">
-            <div class="menu"><span>Product</span></div>
-            <div class="menu"><span>Interest</span></div>
-            <div class="menu"><span>Artcles</span></div>
-            <div class="menu"><span>Home</span></div>
+            <span class="menu style_prevu_kit" id="performance">Works</span>
+            <span class="menu style_prevu_kit" id="Interest">Interest</span>
+            <span class="menu style_prevu_kit" id="Artcles">Artcles</span>
+            <span class="menu active style_prevu_kit" id="Home">Home</span>
           </div>
         </div>
       </el-row>
       <el-row class="main_row_two">
         <!--轮播图-->
         <div class="img_swiper">
-          <div class="swiper"></div>
+          <div class="swipering">
+            <swiper ref="mySwiper" :options="swiperOption">
+              <swiper-slide
+                ><img class="imgadjust" src="../assets/images/swiper_1.jpg"
+              /></swiper-slide>
+              <swiper-slide
+                ><img class="imgadjust" src="../assets/images/swiper_2.jpg"
+              /></swiper-slide>
+              <swiper-slide
+                ><img class="imgadjust" src="../assets/images/swiper_3.jpg"
+              /></swiper-slide>
+              <swiper-slide
+                ><img class="imgadjust" src="../assets/images/swiper_4.jpg"
+              /></swiper-slide>
+              <swiper-slide
+                ><img class="imgadjust" src="../assets/images/swiper_5.jpg"
+              /></swiper-slide>
+              <swiper-slide
+                ><img class="imgadjust" src="../assets/images/swiper_6.jpg"
+              /></swiper-slide>
+              <div class="swiper-pagination" slot="pagination"></div>
+            </swiper>
+          </div>
           <div class="mask"></div>
         </div>
         <!--文字介绍-->
@@ -36,24 +60,45 @@
           <div class="address">
             <span class="subtitle">ZheJiang , China</span>
           </div>
-          <div class="text"><span>A sunny and handsome boy in China.Like reading, playing chess, playing games, love the two-dimensional culture and Vtubers</span></div>
+          <div class="text">
+            <span
+              >A sunny and handsome boy in China.Like reading, playing chess,
+              playing games, love the two-dimensional culture and Vtubers</span
+            >
+          </div>
         </div>
       </el-row>
     </el-col>
-    <el-col
-      class="allheight adjust_blank"
-      :span="3"
-      style="border-left: 1px solid rgba(212, 212, 212, 0.1)"
-    ></el-col>
+    <el-col class="allheight adjust_blank" :span="3"></el-col>
   </div>
 </template>
 
 <script>
+import "swiper/dist/css/swiper.css";
+import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
+import '../common/canvas.js'
 export default {
   name: "Home",
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  directives: {
+    swiper: directive,
+  },
   data() {
     return {
       activeIndex: "1",
+      swiperOption: {
+        spaceBetween: 10,
+        loop: true,
+        autoplay: 3000,
+        autoplayDisableOnInteraction: false,
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+        },
+      },
     };
   },
 };
@@ -61,10 +106,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "../common/Home.css";
+@import "../common/textjump.css";
+@import "../common/canvas.css";
+
 .home_body {
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: rgba(0, 0, 0, 0.8); */
   position: relative;
 }
 .allheight {
@@ -72,19 +121,19 @@ export default {
   position: relative;
 }
 .main_row_one {
-  height: 15%;
+  height: 20%;
   width: 100%;
 }
 .main_row_two {
-  height: 85%;
+  height: 80%;
   width: 100%;
   box-sizing: border-box;
-  padding: 2%;
+  padding-left: 1%;
   /* background-color: salmon; */
 }
 .logo {
-  width: 45px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
   position: relative;
   float: left;
   left: 10%;
@@ -93,16 +142,16 @@ export default {
   transform: translateY(-50%);
 }
 .logo_text {
-  position: relative;
-  font-size: 25px;
+  position: absolute;
+  font-size: 32px;
   font-family: fantasy;
   letter-spacing: 3px;
-  top: 50%;
+  top: 45%;
   transform: translateY(-40%);
   color: rgba(255, 255, 255, 0.7);
   font-weight: 200;
   float: left;
-  left: 18%;
+  left: 35%;
 }
 .top_col_one {
   height: 100%;
@@ -134,20 +183,23 @@ span {
   transform: translateY(-50%);
 }
 .menu {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  height: 100%;
-  width: 10%;
-  margin: 0 10px;
+  background-color: rgba(240, 0, 0, 0);
+  margin: 0 20px;
   padding: 0;
   display: inline;
   float: right;
+  font-size: 20px;
 }
 .menu :hover {
   color: rgba(255, 72, 72, 0.8);
   cursor: pointer;
+}
+.active {
+  color: rgba(255, 72, 72, 0.8);
 }
 .img_swiper {
   width: 84%;
@@ -155,19 +207,29 @@ span {
   position: relative;
   box-sizing: border-box;
 }
-.swiper {
+.swipering {
   position: relative;
   float: left;
-  width:75%;
+  width: 72%;
   height: 100%;
-  background-color: silver;
+  /* background-color: silver; */
+}
+.swiper-container,
+.swiper-wrapper,
+.swiper-slide {
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 .mask {
   position: relative;
   float: left;
-  width: 25%;
-  height: 100%;
-  background-color: rgba(80, 80, 80, 0.3);
+  width: 28%;
+  height: 73.6%;
+  top: 40%;
+  left: 5%;
+  transform: translateY(-50%);
+  background-color: rgba(71, 71, 71, 0.3);
 }
 .introduct {
   float: right;
@@ -177,24 +239,27 @@ span {
   width: 32%;
   height: 100%;
 }
-.name,.address,.text {
+.name,
+.address,
+.text {
   float: right;
   text-align: left;
   position: relative;
-  margin-top: 50%;
+  margin-top: 40%;
   width: 100%;
   height: max-content;
 }
-.address{
+.address {
   margin-top: 3%;
 }
-.text{
+.text {
   margin-top: 4%;
   padding-right: 8%;
-  text-align: inter-word ;
+  text-align: inter-word;
   word-break: break-all;
   box-sizing: border-box;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -209,11 +274,21 @@ span {
   margin-left: 2%;
   letter-spacing: 2px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
 }
-.text span{
+.text span {
   margin-left: 2%;
   width: 100%;
+}
+.imgadjust {
+  width: 100%;
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}
+.swiper-pagination {
+  width: 100%;
+  height: 10px;
 }
 </style>
 <style>
